@@ -29,7 +29,7 @@ const Orders = () => {
                 </Link>
             </Flex>
 
-            <CustomTable data={orders} type="ordersTable" />
+            <CustomTable data={orders} />
 
         </Container>
     );

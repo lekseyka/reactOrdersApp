@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Orders from "./components/orders/Orders";
 import CreateOrder from "./components/createOrder/CreateOrder";
 import {ChakraProvider} from "@chakra-ui/react";
-import theme from "./components/style";
+import theme from "./theme/theme";
 
 function App() {
 
