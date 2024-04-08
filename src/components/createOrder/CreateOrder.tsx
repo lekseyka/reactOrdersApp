@@ -34,8 +34,7 @@ const CreateOrder = () => {
     const [sku, setSku] = useState<string>('');
     const [suggestions, setSuggestions] = useState<Array<any>>([]);
     const [inputActive, setInputActive] = useState<boolean>(false);
-
-    const deliveryPrice: number = 100;
+    const [deliveryPrice, setDeliveryPrice] = useState<string>('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -66,8 +65,7 @@ const CreateOrder = () => {
         }
     }, [address])
 
-    const copyToClipboard = (e: any) => {
-        e.preventDefault();
+    const copyToClipboard = () => {
         navigator.clipboard.writeText(address);
     };
 
@@ -130,7 +128,7 @@ const CreateOrder = () => {
             comment: comment,
             price: +price * +amount,
             amount: +amount,
-            deliveryPrice: deliveryPrice,
+            deliveryPrice: +deliveryPrice,
             totalPrice: 0,
             date: date.split('-').reverse().join('.'),
             productName: productName,
@@ -195,9 +193,9 @@ const CreateOrder = () => {
                             </FormControl>
 
                             <FormControl isRequired>
-                                <FormLabel variant="form-input">Стоимость</FormLabel>
+                                <FormLabel variant="form-input">Стоимость доставки</FormLabel>
                                 <InputGroup size='sm'>
-                                    <Input onChange={e => {setPrice(e.target.value || '')}} type="number" placeholder='Введите сумму' />
+                                    <Input onChange={e => {setDeliveryPrice(e.target.value || '')}} type="number" placeholder='Введите сумму доставки' />
                                     <InputRightAddon>
                                         RUB
                                     </InputRightAddon>
@@ -225,6 +223,7 @@ const CreateOrder = () => {
                                         <Th>№</Th>
                                         <Th>Название</Th>
                                         <Th>Артикул</Th>
+                                        <Th>Стоимость</Th>
                                         <Th>Количество</Th>
                                     </Tr>
                                 </Thead>
@@ -239,6 +238,11 @@ const CreateOrder = () => {
                                         <Td>
                                             <FormControl isRequired>
                                                 <Input value={sku} onChange={(e) => {cleanSku(e, e.target.value || '')}} type="text" />
+                                            </FormControl>
+                                        </Td>
+                                        <Td>
+                                            <FormControl isRequired>
+                                                <Input onChange={e => {setPrice(e.target.value || '')}} type="number" />
                                             </FormControl>
                                         </Td>
                                         <Td>
@@ -265,7 +269,7 @@ const CreateOrder = () => {
                             <Flex>
                                 <Text color='#484A6A' fontWeight="600" textTransform="uppercase">Сумма с доставкой</Text>
                                 <Spacer />
-                                <Text color='#484A6A' fontWeight="600">{+price * +amount + deliveryPrice}</Text>
+                                <Text color='#484A6A' fontWeight="600">{+price * +amount + +deliveryPrice}</Text>
                             </Flex>
                         </Box>
                         <Flex mt="20px" justifyContent="flex-end">
