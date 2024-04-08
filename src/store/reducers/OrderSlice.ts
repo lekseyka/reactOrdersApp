@@ -22,6 +22,7 @@ const initialState: OrderState = {
             comment: 'быстрее',
             productName: 'Двигло',
             sku: '912497129471264061',
+            productComment: 'rekjgnerjknrg',
         },
     ],
     isLoading: false,

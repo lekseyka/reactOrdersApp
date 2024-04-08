@@ -11,4 +11,5 @@ export interface IOrder {
     comment: string;
     productName: string;
     sku: string;
+    productComment: string;
 }

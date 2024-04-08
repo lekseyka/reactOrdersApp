@@ -35,6 +35,7 @@ const CreateOrder = () => {
     const [suggestions, setSuggestions] = useState<Array<any>>([]);
     const [inputActive, setInputActive] = useState<boolean>(false);
     const [deliveryPrice, setDeliveryPrice] = useState<string>('');
+    const [productComment, setProductComment] = useState<string>('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -133,6 +134,7 @@ const CreateOrder = () => {
             date: date.split('-').reverse().join('.'),
             productName: productName,
             sku: sku,
+            productComment: productComment,
         };
 
         item.totalPrice = item.price  + item.deliveryPrice;
@@ -225,6 +227,7 @@ const CreateOrder = () => {
                                         <Th>Артикул</Th>
                                         <Th>Стоимость</Th>
                                         <Th>Количество</Th>
+                                        <Th>Комментарий</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
@@ -249,6 +252,9 @@ const CreateOrder = () => {
                                             <FormControl isRequired>
                                                 <Input value={amount} onChange={(e) => {setAmount(e.target.value || '')}} type="text" />
                                             </FormControl>
+                                        </Td>
+                                        <Td>
+                                            <Input value={productComment} onChange={(e) => {setProductComment(e.target.value || '')}} type="text" />
                                         </Td>
                                     </Tr>
                                 </Tbody>
